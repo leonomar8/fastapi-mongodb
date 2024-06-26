@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from pymongo import MongoClient
 from bson import ObjectId
+import os
 
 app = FastAPI()
 
@@ -51,3 +52,8 @@ def delete_item(item_id: str):
     if result.deleted_count == 1:
         return {"message": "Item deleted successfully"}
     raise HTTPException(status_code=404, detail="Item not found")
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
