@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from pymongo import MongoClient
 from bson import ObjectId
+import uvicorn
 import os
 
 app = FastAPI()
