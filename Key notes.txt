@@ -1,0 +1,85 @@
+========================================
+FastAPI + Udemy
+========================================
+Note: The code is in this path D:\DEVOPS\PYTHON\fastapi-postgresql
+
+//Activate virtual environment in my python project folder
+ $ py -m venv venv	//optional  python -m venv env
+ $ venv\Scripts\activate
+
+//you will see this new prompt
+ (env)$ 
+
+
+//Install libraries
+$ pip install fastapi uvicorn pymongo
+
+//reload uvicorn each time we save changes to the project
+$ uvicorn main:app --reload
+
+//if port 8000 is busy try this command
+$ uvicorn main:app --reload --port 5000
+
+---------------------------------------
+Verificacion dentro Container Mongodb
+---------------------------------------
+
+# Paso 1: Listar los contenedores en ejecución
+docker ps
+
+# Paso 2: Acceder al contenedor de MongoDB
+docker exec -it mongodb bash
+
+# Paso 3: Iniciar el cliente de MongoDB
+mongosh			//mongo dio error, mongosh no
+
+# Paso 4: Seleccionar la base de datos
+use mydatabase
+
+# Paso 5: Mostrar las colecciones
+show collections
+
+# Paso 6: Ver el contenido de una colección
+db.items.find().pretty()
+
+
+-----------------------------------------
+Instalar Mongodb en AWS EC2 Ubuntu 22.04
+-----------------------------------------
+$ sudo apt-get install gnupg curl
+
+$ curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+
+$ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+$ sudo apt-get update
+$ sudo apt-get install -y mongodb-org 
+$ sudo systemctl start mongod
+
+
+//Accept connections from any IP -> bindIP: 0.0.0.0
+$ sudo nano /etc/mongod.conf
+
+	# network interfaces
+	net:
+	  port: 27017
+	  bindIp: 0.0.0.0
+
+//restar the service
+$ sudo service mongod restart
+
+$ sudo systemctl status mongod
+$ sudo systemctl enable mongod
+$ mongosh
+ 
+---------------------------------------
+Connection with AWS EC2 mongoDB
+---------------------------------------
+//You only need to change the connection line with the DNS IPv4 from AWS EC2 (ec2-54-146-235-222.compute-1.amazonaws.com)
+
+# Conexión a MongoDB
+client = MongoClient("mongodb://ec2-54-146-235-222.compute-1.amazonaws.com:27017/")
+db = client["my_database"]
+
