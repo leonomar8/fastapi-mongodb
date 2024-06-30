@@ -1,10 +1,13 @@
 # Interconnect Python API with MongoDB in AWS
 
-
-![Alt text](FastAPI_AutoDoc_Swagger.png)
+## Architecture Diagram
+![Alt text](Architecture_diagram.png)
 
 ## Project Overview
 This Cloud Project requires deploying the application (API) locally or on Railway (cloud provider), with integration to a MongoDB database hosted on AWS for CRUD operations. The architecture incorporates key tools and technologies including AWS, Railway, GitHub, FastAPI, Swagger, and MongoDB.
+
+## CRUD operations and Auto-generated Documentation
+![Alt text](FastAPI_AutoDoc_Swagger.png)
 
 ## Architecture
 The project architecture includes:
@@ -59,6 +62,22 @@ Deployment steps for the FastAPI application deployed on Railway and connected t
 **Others**
 10. **AMI Creation**: Create an Amazon Machine Image (AMI) from the configured EC2 instance for future deployments.
 11. **Documentation and Testing**: FastAPI can autogenerate documentation through the use of the integrated toll Swagger. You can use the documentation page http://domain:port/docs for basic testing of the CRUD operations.
+
+## CRUD and Testing
+```bash
+curl -X POST "http://127.0.0.1:5000/items/" -H "Content-Type: application/json" -d '{"name": "Item 1", "description": "Description for item 1"}'
+
+curl -X GET "http://127.0.0.1:5000/items/668177cb63499636cef2fe1b"
+
+curl -X GET "http://127.0.0.1:5000/items/" 
+
+curl -X PUT "http://127.0.0.1:5000/items/668177cb63499636cef2fe1b" -H "Content-Type: application/json" -d '{"name": "Updated Item 1", "description": "Updated description"}'
+
+curl -X DELETE "http://127.0.0.1:5000/items/668177cb63499636cef2fe1b"
+```
+
+
+![Alt text](Logs_Uvicorn_CRUD.png)
 
 ## Repository Structure
 - `Deployment Script`: Contains the script for setting up the mongoDB on the EC2 instance
