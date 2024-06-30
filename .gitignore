@@ -1,2 +1,8 @@
 __pycache__
 venv
+user data file for aws mongodb server.txt
+Key notes.txt
+Dockerfile
+docker-compose.yaml
+Key notes.txt
+.dockerignore

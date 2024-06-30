@@ -83,3 +83,14 @@ Connection with AWS EC2 mongoDB
 client = MongoClient("mongodb://ec2-54-146-235-222.compute-1.amazonaws.com:27017/")
 db = client["my_database"]
 
+
+---------------------------------------
+Deployment in Railway
+---------------------------------------
+//If you don't have the requirements.txt file you can generate it with this command
+$ python -m pip freeze > requirements.txt
+
+//put this files inside .gitignore file so you wont push them into GitHub
+	__pycache__
+	venv
+

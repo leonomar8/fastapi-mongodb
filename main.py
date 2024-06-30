@@ -6,7 +6,11 @@ from bson import ObjectId
 import uvicorn
 import os
 
-app = FastAPI()
+app = FastAPI(
+    title='FastAPI + MongoDB in AWS',
+    description='Proyecto de Aprendizaje FastAPI y MongoDB desplegado en server EC2',
+    version='0.0.1'
+)
 
 # Modelo de datos
 class Item(BaseModel):
@@ -15,7 +19,7 @@ class Item(BaseModel):
     description: Optional[str] = None
 
 # Conexión a MongoDB
-client = MongoClient("mongodb://ec2-3-80-218-210.compute-1.amazonaws.com:27017/")
+client = MongoClient("mongodb://ec2-3-90-239-170.compute-1.amazonaws.com:27017/")
 db = client["my_database"]
 
 # Create - Crear un nuevo ítem
