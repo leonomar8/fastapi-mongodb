@@ -19,7 +19,7 @@ class Item(BaseModel):
     description: Optional[str] = None
 
 # Conexión a MongoDB
-client = MongoClient("mongodb://ec2-3-90-239-170.compute-1.amazonaws.com:27017/")
+client = MongoClient("mongodb://ec2-3-87-231-9.compute-1.amazonaws.com:27017/")
 db = client["my_database"]
 
 # Create - Crear un nuevo ítem
